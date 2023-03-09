@@ -37,21 +37,21 @@ def hello():
     now = datetime.datetime.now()
     current_time = now.strftime("%Y:%m:%d:%H:%M:%S")
 
-
+    '''
     # Drop previous table of same name if one exists
     cursor.execute("DROP TABLE IF EXISTS Events;")
     print("Finished dropping table (if existed)")
-
+    
     # Create a table
     cursor.execute("CREATE TABLE Events (event_id SERIAL, timestamp text, event text);")
     print("Finished creating table")
-
+    
     # Create a index
     cursor.execute("CREATE INDEX idx_event_id ON Events(event_id);")
     print("Finished creating index")
-
+    '''
     # Insert some data into the table
-    cursor.execute("INSERT INTO Events  (timestamp, event) VALUES (%s, %s);", (current_time,"Test Event"))
+    cursor.execute("INSERT INTO Events  (timestamp, event) VALUES (%s, %s);", (current_time,"Test Event_2"))
     print("Inserted 2 rows of data")
 
     # Clean up

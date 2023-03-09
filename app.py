@@ -2,7 +2,18 @@ import psycopg2
 from psycopg2 import pool
 import datetime
 from flask import Flask
+from flask import request
 app = Flask(__name__)
+
+def get_remote_ip():
+    if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+        proxy_data = request.environ['REMOTE_ADDR']
+        ip_list = proxy_data.split(',')
+        return ip_list[0]
+    else:
+        proxy_data =  request.environ['HTTP_X_FORWARDED_FOR']
+        ip_list = proxy_data.split(',')
+        return ip_list[0]
 
 @app.route("/")
 def hello():
@@ -51,7 +62,7 @@ def hello():
     print("Finished creating index")
     '''
     # Insert some data into the table
-    cursor.execute("INSERT INTO Events  (timestamp, event) VALUES (%s, %s);", (current_time,"Test Event_2"))
+    cursor.execute("INSERT INTO Events  (timestamp, event) VALUES (%s, %s);", (current_time,"request from "+ get_remote_ip()))
     print("Inserted 2 rows of data")
 
     # Clean up

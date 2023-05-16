@@ -1,2 +1,11 @@
-Flask>=2.0,<=2.1.1
-psycopg2-binary
+azure-functions
+azure-mgmt-network
+azure-identity
+azure-mgmt-resource>=18.0.0
+azure-eventhub
+azure-mgmt-monitor
+azure-monitor-query
+azure-mgmt-loganalytics
+azure-mgmt-storage
+azure-mgmt-web
+azure.mgmt.eventhub
